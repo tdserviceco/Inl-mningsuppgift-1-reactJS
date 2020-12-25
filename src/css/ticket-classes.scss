@@ -1,0 +1,13 @@
+.ticket-class-flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0 10px;
+  padding: 10px 0;
+  label[for="second-class"]{
+    width: 50%;
+  }
+  label[for="first-class"] {
+    width: 50%;
+  }
+}

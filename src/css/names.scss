@@ -1,0 +1,26 @@
+.names-flex {
+  margin: 0 10px 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  label[for="first-name"] {
+    margin-bottom: 10px;
+    width: 100%;
+    input {
+      border-radius: 5px;
+      padding: 5px 0;
+      width: 100%;
+    }
+  }
+
+  label[for="last-name"] {
+    margin-bottom: 10px;
+    width: 100%;
+    input {
+      border-radius: 5px;
+      padding: 5px 0;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.accept-condition-flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0 10px;
+  flex-direction: column;
+
+  .acceptance {
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+  }
+}
