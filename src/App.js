@@ -5,6 +5,7 @@ import NameField from './components/NameField';
 import TicketClasses from './components/TicketClasses';
 import Tabs from './components/Tabs';
 import TicketResult from './components/TicketResult';
+
 class App extends Component {
   constructor() {
     super();
@@ -14,7 +15,7 @@ class App extends Component {
       showResult: false
     }
   }
-
+  
   saveInformation = (e) => {
     e.preventDefault();
     let ticketClass;
@@ -42,8 +43,10 @@ class App extends Component {
   }
 
   render() {
+    
     const { showResult, ticketInformation, hideMain } = this.state;
     return (
+      
       <>
         <main className={`${hideMain ? 'hide' : ''}`}>
           <form onSubmit={this.saveInformation}>
