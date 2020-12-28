@@ -1,28 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Amounts extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      amount : '',
-    }
-  }
+function Amounts(props) {
 
-  listAmount = (amount) => {
+  const listAmount = (amount) => {
     let array = [];
-    for(let i = 1; i <= amount; i++ ) {
-     array.push(i)
+    for (let i = 1; i <= amount; i++) {
+      array.push(i)
     }
-    return array.map((index,key) => <option value={index} key={key}>{index}</option>)
+    return array.map((index, key) => <option value={index} key={key}>{index}</option>)
   }
 
-  render() {
-    return (
-      <>
-        {this.listAmount(this.props.amount)}
-      </>
-    );
-  }
+  return (
+    <>
+      {listAmount(props.amount)}
+    </>
+  );
 }
 
 export default Amounts;
