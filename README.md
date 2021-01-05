@@ -14,3 +14,12 @@ What the webpack contains
 * JSX support (now you dont need .jsx)
 * JS support (Same as above)
 * Image/Favicon and Font support
+
+
+Minor warning:
+***
+If you get `'cross-env' is not recognized as an internal or external command,
+operable program or batch file.` then use these commands to "fix" it.
+`rm -rf node_modules && rm package-lock.json && npm cache clear --force`
+
+then use `npm i && npm start`
