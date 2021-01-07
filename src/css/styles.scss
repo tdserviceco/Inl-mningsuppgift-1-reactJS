@@ -1,4 +1,4 @@
-$black : rgba(0,0,0,0.6);
+$black: rgba(0, 0, 0, 0.6);
 body {
   .table-structure {
     display: flex;
@@ -10,6 +10,23 @@ body {
       h3 {
         padding: 10px;
       }
+    }
+    .table-dice {
+      .dices {
+        .hide {
+          opacity: 0.5;
+        }
+        &:first-child {
+          padding-right: 10px;
+        }
+        &:last-child {
+          padding-left: 10px;
+        }
+        padding-top: 10px;
+      }
+      display: flex;
+      @import "./dice.scss";
+      font-size: 2em;
     }
     justify-content: center;
     align-items: center;
