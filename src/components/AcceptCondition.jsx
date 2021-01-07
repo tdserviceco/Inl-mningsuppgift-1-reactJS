@@ -7,6 +7,7 @@ class AcceptCondition extends Component {
       disabled: true
     }
   }
+  
   activateButton = (e) => {
     if (e.target.value === 'off') {
       this.setState({
