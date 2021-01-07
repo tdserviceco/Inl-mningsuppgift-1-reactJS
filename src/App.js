@@ -1,68 +1,52 @@
-import React, { Component, useEffect } from 'react';
-import AcceptCondition from './components/AcceptCondition';
-import AmountOfTicketsAndTitle from './components/AmountOfTicketsAndTitle';
-import NameField from './components/NameField';
-import TicketClasses from './components/TicketClasses';
-import Tabs from './components/Tabs';
-import TicketResult from './components/TicketResult';
-
+import React, { Component } from 'react';
+import Game from './components/Game';
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      ticketInformation: [{}],
-      hideMain: false,
-      showResult: false
+      cpuScore: 0,
+      p1Score: 0,
+      roll: 0,
+      disableButton: false
     }
   }
-  
-  saveInformation = (e) => {
-    e.preventDefault();
-    let ticketClass;
-    if (e.target[0].value === '2:a klass' && e.target[0].checked) {
-      ticketClass = e.target[0].value;
+
+  updateAll = () => {
+    // Check if roll is over 3 if not continue the game till we reach to roll 3
+    if (this.state.roll >= 2) {
+      this.setState((prevState) => ({
+        disableButton: true
+      }))
+      const { p1Score, cpuScore } = this.state
+      if (p1Score > cpuScore) {
+        alert("You won!")
+      }
+      else if (p1Score === cpuScore) {
+        alert("Tie!!")
+      }
+      else {
+        alert("CPU Won!!!")
+      }
+      return;
     }
-    else if (e.target[1].value === '1:a klass' && e.target[1].checked) {
-      ticketClass = e.target[1].value;
+    else {
+      this.setState((prevState) => ({
+        //Update P1score
+        p1Score: prevState.p1Score + Math.floor(Math.random() * (6 - 1) + 1),
+        //Update CPUscore
+        cpuScore: prevState.cpuScore + Math.floor(Math.random() * (6 - 1) + 1),
+        //Update X rolls
+        roll: prevState.roll + 1,
+      }));
     }
-    this.setState({
-      ticketInformation: [{
-        'timeDepart': '10:30',
-        'from': 'Göteborg',
-        'to': 'Stockholm',
-        'timeArrive': '14:45',
-        'ticketClass': ticketClass,
-        'firstname': e.target[4].value,
-        'lastname': e.target[5].value,
-        'tickets': e.target[2].value,
-        'title': e.target[3].value,
-      }],
-      hideMain: true,
-      showResult: true
-    })
   }
 
   render() {
-    
-    const { showResult, ticketInformation, hideMain } = this.state;
+    const { roll, p1Score, cpuScore, disableButton } = this.state
     return (
-      
-      <>
-        <main className={`${hideMain ? 'hide' : ''}`}>
-          <form onSubmit={this.saveInformation}>
-            <Tabs from="göteborg" to="stockholm" arriveTime="14:45" departTime="10:30" />
-            <TicketClasses />
-            <AmountOfTicketsAndTitle />
-            <NameField />
-            <AcceptCondition />
-          </form>
-        </main>
-        {showResult &&
-          <div className={`result-field`}>
-            <TicketResult result={ticketInformation} />
-          </div>
-        }
-      </>
+      <main>
+        <Game disableButton={disableButton} cpuScore={cpuScore} p1Score={p1Score} roll={roll} updateAll={this.updateAll} />
+      </main>
     );
   }
 }
