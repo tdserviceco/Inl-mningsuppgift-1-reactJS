@@ -2,7 +2,10 @@ import React from 'react';
 import DiceP1 from './DiceP1';
 import DiceCPU from './DiceCPU';
 function PlayButton(props) {
-
+  const refreshPage = () => {
+    return window.location.reload();
+  }
+  console.log(props.hide)
   return (
     <div className="table-structure">
       <div className="table-header">
@@ -17,7 +20,7 @@ function PlayButton(props) {
       <button type="button" disabled={props.disableButton} onClick={props.updateAll}>
         Roll {props.roll}
       </button>
-
+      <button className={props.hide ? 'hide' : 'reset'} type="button" onClick={refreshPage}>Reset game</button>
     </div>
   )
 }

@@ -10,6 +10,7 @@ class App extends Component {
       disableButton: false,
       currentDiceP1: 0,
       currentDiceCPU: 0,
+      hide: true
     }
   }
 
@@ -18,26 +19,33 @@ class App extends Component {
     let randomCPU = Math.floor(Math.random() * (6 - 1) + 1)
 
     // Check if roll is over 3 if not continue the game till we reach to roll 3
-    if (this.state.roll >= 4) {
+    if (this.state.roll === 3) {
       this.setState((prevState) => ({
         disableButton: true,
-        roll: 'is over'
+        hide: false,
+        roll: 'is over',
+        p1Score: prevState.p1Score + randomP1,
+        //Update CPUscore
+        cpuScore: prevState.cpuScore + randomCPU,
       }))
-      const { p1Score, cpuScore } = this.state
 
-      if (p1Score > cpuScore) {
-        console.log(p1Score + " vs " + cpuScore)
-        alert("You won!")
-      }
-      else if (p1Score === cpuScore) {
-        console.log(p1Score + " vs " + cpuScore)
-        alert("Tie!!")
-      }
-      else {
-        console.log(p1Score + " vs " + cpuScore)
-        alert("CPU Won!!!")
+      setTimeout(() => {
+        const { p1Score, cpuScore } = this.state
 
-      }
+        if (p1Score > cpuScore) {
+          console.log(p1Score + " vs " + cpuScore)
+          alert("You won!")
+        }
+        else if (p1Score === cpuScore) {
+          console.log(p1Score + " vs " + cpuScore)
+          alert("Tie!!")
+        }
+        else {
+          console.log(p1Score + " vs " + cpuScore)
+          alert("CPU Won!!!")
+        }
+      }, 1000)
+
     }
     else {
 
@@ -57,10 +65,10 @@ class App extends Component {
   }
 
   render() {
-    const { roll, p1Score, cpuScore, disableButton, currentDiceP1, currentDiceCPU, randomDice } = this.state
+    const { roll, p1Score, cpuScore, disableButton, currentDiceP1, currentDiceCPU, randomDice, hide } = this.state
     return (
       <main>
-        <Game currentDiceCPU={currentDiceCPU} currentDiceP1={currentDiceP1} randomDice={randomDice} disableButton={disableButton} cpuScore={cpuScore} p1Score={p1Score} roll={roll} updateAll={this.updateAll} />
+        <Game hide={hide} currentDiceCPU={currentDiceCPU} currentDiceP1={currentDiceP1} randomDice={randomDice} disableButton={disableButton} cpuScore={cpuScore} p1Score={p1Score} roll={roll} updateAll={this.updateAll} />
       </main>
     );
   }
